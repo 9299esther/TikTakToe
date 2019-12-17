@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>TIC_Tac_Toe_ Project</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <menu>
+        <header>Tic Tac Toe</header>
+        <div><button>New</button>
+            <button>Save</button>
+            <button>Load</button>
+            <button>Record</button>
+            <button>Undo</button></div>
+    </menu>
+    <div id="players">
+        <div class="players" id="player1">
+            <section>
+                <label>player 1 name:</label>
+                <input id="input1" type="text" placeholder="Please enter your name"> <button id="b1">Save</button>
+            </section>
+        </div><!-- שחקן 1 -->
+        <div class="players" id="player2">
+            <section>
+                <label>player 2 name:</label>
+                <input id="input2" type="text" placeholder="Please enter your name"> <button id="b2">Save</button>
+            </section>
+        </div><!-- שחקן 2 -->
+    </div>
+    <div id="board">
+        <div class="row">
+            <div class="column" id="loc0"></div>
+            <div class="column" id="loc1"></div>
+            <div class="column" id="loc2"></div>
+        </div>
+        <div class="row">
+            <div class="column" id="loc3"></div>
+            <div class="column" id="loc4"></div>
+            <div class="column" id="loc5"></div>
+        </div>
+        <div class="row">
+            <div class="column" id="loc6"></div>
+            <div class="column" id="loc7"></div>
+            <div class="column" id="loc8"></div>
+        </div>
+    </div>
+
+
+    <script src="script.js"></script>
+</body>
+
+</html>

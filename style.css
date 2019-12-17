@@ -1,0 +1,60 @@
+body{
+    color: wheat;
+    background-color: rgb(119, 155, 155);
+    padding: 10px;
+    border: 10px;
+}
+header{
+    font-size: larger;
+}
+
+menu{
+    color: wheat;
+    background-color: cadetblue;
+    height: 44px;
+    padding: 5px;  
+    text-align: center;
+    justify-content: space-around;
+}
+button{
+    color: wheat;
+    background-color: cadetblue;
+  
+}
+
+#players{
+    display: flex;
+    justify-content: space-around;
+    padding: 10px;
+
+ }  
+ .players{
+    color: wheat;
+    background-color: cadetblue;
+    border: 1px solid wheat;
+    padding: 5px;
+ }
+ #board{
+     position: absolute;
+     left: 40%;
+ }
+ .row{
+    display: flex;
+    height: 70px;   
+}
+
+ .column{
+    border: 1px solid wheat;
+    padding: 5px;
+    width: 70px;
+}
+.Circle{
+ /* o */   background-image: url('https://oychastudio.com/wp-content/uploads/2019/01/cropped-O-icon-01-01-300x300.png');
+
+}
+.ex{
+ /* x */   background-image:url('https://cdn0.iconfinder.com/data/icons/octicons/1024/x-512.png');
+ background-size: cover;
+
+}
+ 

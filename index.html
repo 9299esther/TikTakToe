@@ -13,41 +13,44 @@
 
     <menu>
         <header>Tic Tac Toe</header>
-        <div><button>New</button>
+        <div>
+            <button id="New">New</button>
             <button>Save</button>
             <button>Load</button>
             <button>Record</button>
-            <button>Undo</button></div>
+            <button>Undo</button>
+        </div>
     </menu>
     <div id="players">
         <div class="players" id="player1">
             <section>
-                <label>player 1 name:</label>
+                <label>player 'o' name:</label>
                 <input id="input1" type="text" placeholder="Please enter your name"> <button id="b1">Save</button>
             </section>
         </div><!-- שחקן 1 -->
         <div class="players" id="player2">
             <section>
-                <label>player 2 name:</label>
+                <label>player 'x' name:</label>
                 <input id="input2" type="text" placeholder="Please enter your name"> <button id="b2">Save</button>
             </section>
         </div><!-- שחקן 2 -->
     </div>
+    <div id="timer">00:00</div>
     <div id="board">
         <div class="row">
-            <div class="column" id="loc0"></div>
-            <div class="column" id="loc1"></div>
-            <div class="column" id="loc2"></div>
+            <div class="column" id="loc0">0</div>
+            <div class="column" id="loc1">1</div>
+            <div class="column" id="loc2">2</div>
         </div>
         <div class="row">
-            <div class="column" id="loc3"></div>
-            <div class="column" id="loc4"></div>
-            <div class="column" id="loc5"></div>
+            <div class="column" id="loc3">3</div>
+            <div class="column" id="loc4">4</div>
+            <div class="column" id="loc5">5</div>
         </div>
         <div class="row">
-            <div class="column" id="loc6"></div>
-            <div class="column" id="loc7"></div>
-            <div class="column" id="loc8"></div>
+            <div class="column" id="loc6">6</div>
+            <div class="column" id="loc7">7</div>
+            <div class="column" id="loc8">8</div>
         </div>
     </div>
 

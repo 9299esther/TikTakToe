@@ -142,6 +142,7 @@ function clear() {
     document.querySelectorAll("#board div.column").forEach((d) => {
         d.className = "column"
     })
+    document.querySelector('#board').className= ''
 }
 //פונקציית בדיקת ניצחון
 localStorage.minOfMoves = 10

@@ -46,28 +46,29 @@ else {
 let timer = document.getElementById('timer')
 let Seconds
 let Minutes
+ResetTime()
 function ResetTime() {
     Seconds = 0
-    Minutes = 0
+    Minutes = 00
 }
-/* setInterval(function () {//טימר
+setInterval(function () {//טימר
     if (Seconds == 59) {
         Seconds = 0
-        if (Minutes == 1) {        
-                alert('Time up')
+        if (Minutes == 1) {
+            alert('Please hurry')
         }
         else
             Minutes++
     }
     else
         Seconds++
-     if (Seconds < 10 && Minutes < 10)
+    if (Seconds < 10 && Minutes < 10)
         timer.innerText = '0' + Minutes + ':' + '0' + Seconds
-    else if (Seconds < 10 )
-        timer.innerText =   Minutes + ':' + '0' + Seconds
-   /* else
-        timer.innerText =  Minutes + ':' + Seconds */
-/*}, 1000); */
+    else if (Seconds < 10)
+        timer.innerText = Minutes + ':' + '0' + Seconds
+    else
+        timer.innerText = Minutes + ':' + Seconds
+}, 1000);
 
 let turn = 1
 if (playersName.shape1 == 'X' && turn == 1)
@@ -104,7 +105,6 @@ board.addEventListener('click', function (ev) {
     if (ev.target.classList.contains("ex") || ev.target.classList.contains("circle"))//האם המיקום תפוס */
     {//אם המשבצת תפוסה
         alert('Please select another location')
-        //return false
     }
     else {
         moves++
@@ -112,6 +112,7 @@ board.addEventListener('click', function (ev) {
         ev.target.classList.add(`${ifEven ? "ex" : "circle"}`)
         current = ev.target.id.slice(-1)
         allMoves.push(current)//רשימת מהלכים
+        // debugger
         if (ifEven)
             xMoves.push(current)// x רשימת מהלכים
         else
@@ -119,9 +120,9 @@ board.addEventListener('click', function (ev) {
 
         if (moves > 4) {//בדיקת ניצחון
             if (ifEven)
-                ifVictory(xMoves)
+                ifVictory(xMoves, ifEven)
             else
-                ifVictory(oMoves)
+                ifVictory(oMoves, ifEven)
         }
         turn++
         ResetTime()
@@ -142,63 +143,47 @@ function clear() {
         d.className = "column"
     })
 }
-//פונקציית בדיקת ניצחון?
-let minOfMoves = 10
-function ifVictory(moves) {
+//פונקציית בדיקת ניצחון
+localStorage.minOfMoves = 10
+function ifVictory(moves, ifEven) {//מקבל את מערך xMoves או oMoves
+    let options = [[0, 1, 2], [3, 4, 5], [6, 7, 8], [0, 3, 6], [1, 4, 7], [2, 5, 8], [0, 4, 8], [2, 4, 6]]
+    let rellavant = options.filter(x => x.includes(Number(current)))
 
-    let a = 0
-    for (let i = 0; i < options.length; i++) {
-        a = 0
-        for (let j = 0; j < moves.length; j++) {
-            if (options[i].indexOf(Number(moves[j])) > -1) {//האם J מוכל באופציות
-                a++
-                if (a = 3) {
-                    alert('win')
-
-                    ShowVictory()
-                }
-            }
-
+    for (x of rellavant) {
+        if ((moves.indexOf((x[0]).toString()) > -1) && (moves.indexOf((x[1]).toString()) > -1) && (moves.indexOf((x[2]).toString()) > -1)) {
+            ShowVictory(x, ifEven)
+            upmoves(moves.length * 2 - 1)
         }
-
     }
-}
-/* 
-            else if (moves == 9)//? 
-                alert('טיקו') */
-function ShowVictory() {
-    for (let i = 0; i < 5; i++) {
-        Console.log('kkk')
-        //document.getElementById(i).style.backgroundColor = rgb(125, 23, 100)
-    }
-    board.removeEventListener('click', false)
+    if (moves.length == 5)
+        return alert('טיקו')
+    else
+        return 0
 }
 
+function ShowVictory(x, ifEven) {
+    for (i of x) {
+        i = 'loc' + i
+        document.getElementById(i).classList.add('win')
+    }
+    // board.removeEventListener('click')
+    //let row = document.getElementsByClassName("row")[0]
 
 
-
-
-
-
-
-
+    board.classList.add(`${ifEven ? "ex" : "circle"}`)
+    ifEven ? alert('x win') : alert('o win')
+}
 
 //שמור
-let savedAllMoves = []
-let savedxMoves = []
-let savedoMoves = []
-let savedCurrent
-let savedPlayersName = {}
-let savedMoves
-
 let save = document.getElementById('save')
 save.onclick = function () {
-    savedxMoves = [...xMoves]//העתקת תוכן ןלא רק מצביע נוסף
-    savedoMoves = [...oMoves]
-    savedCurrent = current
-    savedPlayersName = playersName
-    savedAllMoves = [...allMoves]
-    savedMoves = moves
+
+    localStorage.setItem("savedxMoves", JSON.stringify(xMoves))//העתקת תוכן ןלא רק מצביע נוסף
+    localStorage.setItem("savedoMoves", JSON.stringify(oMoves))
+    localStorage.savedCurrent = current
+    localStorage.savedPlayersName = playersName
+    localStorage.savedAllMoves = [allMoves]
+    localStorage.savedMoves = moves
 }
 //טען
 let load = document.getElementById('load')
@@ -206,29 +191,34 @@ load.onclick = function () {
 
     clear()//איפוס לוח
     //בניית לוח
-    allMoves = [...savedAllMoves]
-    xMoves = [...savedxMoves]
-    oMoves = [...savedoMoves]
-    current = savedCurrent
-    playersName = savedPlayersName
-    moves = savedMoves
+    allMoves = [localStorage.savedAllMoves]
+    xMoves = JSON.parse(localStorage.getItem("savedxMoves"))
+    oMoves = JSON.parse(localStorage.getItem("savedoMoves"))
+    current = localStorage.savedCurrent
+    playersName = localStorage.savedPlayersName
+    moves = localStorage.savedMoves
     let a
-    savedxMoves.forEach(function (x) {
+    xMoves.forEach(function (x) {
         a = 'loc' + x
         document.getElementById(a).className = "column ex"
-        //הוספת כלאס
     })
-    savedoMoves.forEach(function (o) {
+    oMoves.forEach(function (o) {
         a = 'loc' + o
         document.getElementById(a).className = "column circle"
-        //הוספת כלאס
     })
+    whosTurnIsIt()
+
 }
 
 //שיא
 let record = document.getElementById('record')
 record.onclick = function () {
-    alert('The record is: ' + minOfMoves + ' moves')
+    alert('The record is: ' + localStorage.minOfMoves + ' moves')
+}
+//עדכון שיא
+function upmoves(x) {
+    if (localStorage.minOfMoves > x)
+        localStorage.minOfMoves = x
 }
 
 //unde

@@ -4,6 +4,12 @@ body{
     padding: 10px;
     border: 10px;
 }
+@media screen and (max-width:768px){
+    body{
+        background-color: rgb(155, 154, 119);
+
+    }
+}
 header{
     font-size: larger;
 }
@@ -16,10 +22,21 @@ menu{
     text-align: center;
     justify-content: space-around;
 }
+@media screen and (max-width:768px){
+    menu{
+        background-color: rgba(34, 119, 11, 0.541);
+        color: black;
+    }
+}
 button{
     color: wheat;
     background-color: cadetblue;
-  
+}
+@media screen and (max-width:768px){
+    button{
+        background-color: rgb(155, 154, 119);
+
+    }
 }
 #whosTurn{
     font-size: xx-large;
@@ -44,6 +61,13 @@ button{
     padding: 5px;
     text-align: center;
  }
+ @media screen and (max-width:768px){
+    .players{
+        background-color: rgb(155, 154, 119);
+    }
+}
+   
+
 /* 'תור מי'*/
  .player1{
     border: 4px solid rgb(1, 33, 36);
@@ -56,26 +80,35 @@ button{
     position: absolute;
     left: 41%; 
  }
+@media screen and (max-width:768px){
+    #board{
+        left: 16%;
+    }
+}
  .row{
     display: flex;
-    height: 70px;   
+    height: 86px;   
 } 
 
 .column{
     border: 1px solid wheat;
     padding: 5px; 
-    width: 70px;
+    width: 86px;
 }
 .circle{
  /* o */  
     background-image: url('https://oychastudio.com/wp-content/uploads/2019/01/cropped-O-icon-01-01-300x300.png');
     background-size: cover;
+    z-index: 2;
 
 }
 .ex{
  /* x */
     background-image:url('https://upload.wikimedia.org/wikipedia/commons/thumb/b/ba/Red_x.svg/600px-Red_x.svg.png');
     background-size: cover;
+    z-index: 2;
 
 }
- 
+.win{
+     background-color: rgb(125, 23, 100);
+}
